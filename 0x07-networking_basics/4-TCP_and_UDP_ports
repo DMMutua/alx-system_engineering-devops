@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Displaying Litsening Ports:
+#
+# - Only outputting the litsening sockets
+# - an Inclusio of PID and program name which any
+#   socket [IP + Port] belongs to.
+sudo netstat -l --program
