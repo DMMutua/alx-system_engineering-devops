@@ -1,3 +1,3 @@
 #!/usr/bin/env ruby
-# Repetition
-puts ARGV[0].scan(/hbtt{1,4}n/).join
+# Repetition Matching.
+puts ARGV[0].scan(/hbtt{1,4)n/).join
