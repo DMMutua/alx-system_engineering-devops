@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Checking for Correct Number of Parameters
+if ["$#" -lt 4 ]; then
+  echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+  exit 1
+fi
+
+# Assignment of parameters to variables
+file_path=$1
+ip_of_server=$2
+username=$3
+ssh_key=$4
+
+# Disabling strict host key checking;
+echo "StrictHostKeyChecking no" >> ~/.ssh/config
+
+# Transfer of file to user's home directory on REMOTE server
+scp -i $ssh_key $file_path $username@$ip_of_server:~
