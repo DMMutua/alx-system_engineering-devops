@@ -13,7 +13,7 @@ username=$3
 ssh_key=$4
 
 # Disabling strict host key checking;
-echo "StrictHostKeyChecking no" >> ~/.ssh/config
+echo "StrictHostKeyChecking=no" >> ~/.ssh/config
 
 # Transfer of file to user's home directory on REMOTE server
 scp -i $ssh_key $file_path $username@$ip_of_server:~
