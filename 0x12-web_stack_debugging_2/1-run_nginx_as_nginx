@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Changing nginx to run with `nginx` as the user
+# Ensuring nginx is litsening on all active IPs on port 8080
+
+# Killing all Apache and nginx Processes running initially
+pkill apache2
+pkill nginx
+
+# Ensuring that port 80 for IPv4 is litsened at port 8080
+if grep -q "listen 80" /etc/nginx/sites-available/default ; then
+	sed -i "s/litsen 80/listen 8080" /etc/nginx/sites-available/default
+fi
+
+# Ensuring that port 80 of IPv4 is listened at port 8080
+if grep -q "listen \[::\]:80" /etc/nginx/sites-available/default ; then
+	sed -i "s/listen \[::\]:80/listen \[::\]:8080/" /etc/nginx/sites-available/default
+fi
+
+# Updating Nginx settings file owner and group
+chown nginx:nginx /etc/nginx/nginx.conf
+
+# Updating the nginx configuration files permissions
+chmod 0644 /etc/nginx/nginx.conf
+
+#starting the nginx service as the nginx user
+su nginx -c "service nginx start"
