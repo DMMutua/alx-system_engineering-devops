@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Setting a Shell for $User
+# Followed by Quering the User_Name on the set up shell
+
+user="$1"
+
+if [ "$user" ] ; then
+    chsh -s "$(which bash)" "$user" && su "$user" -c "whoami"
+fi
